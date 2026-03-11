@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./java-backend
+    env_file: .env
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      - VITE_API_URL=http://backend:8080
+      - VITE_API_KEY=${API_KEY}
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+

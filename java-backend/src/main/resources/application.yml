@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+app:
+  api-key: ${API_KEY}
+  llm:
+    provider: ${LLM_PROVIDER:gemini}
+    google-api-key: ${GOOGLE_API_KEY:}
+    groq-api-key: ${GROQ_API_KEY:}
+    groq-model: ${GROQ_MODEL:llama-3.1-8b-instant}
+
